@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+}
+
+.header {
+    background-color: black;
+    color: white;
+    margin: 0px;
+    text-align: center;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    padding-left: 10%;
+}
+
+p {
+    padding-left: 10%;
+}
+
+a {
+    padding-left: 10%;
+}
