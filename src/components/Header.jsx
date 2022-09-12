@@ -7,9 +7,9 @@ const Header = () => {
   return (
     <HeaderDiv>
         <DivCenter>
-            <a href="/about">About</a>
-            <a href="/technologies">Technologies</a>
-            <a href="/projects">Projects</a>
+            <a href="/#/about">About</a>
+            <a href="/#/technologies">Technologies</a>
+            <a href="/#/projects">Projects</a>
         </DivCenter>
         <DivRight>
             <IconDiv>
