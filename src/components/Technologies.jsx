@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { DiReact, DiPython, DiJavascript1, DiNodejs, DiMongodb, DiHtml5, DiCss3 } from "react-icons/di"
-import { SiCplusplus, SiC, SiWindows } from 'react-icons/si'
+import { DiReact, DiPython, DiJavascript1, DiNodejs, DiMongodb, DiHtml5, DiCss3, DiJava, DiMysql } from "react-icons/di"
+import { SiCplusplus, SiC, SiWindows, SiSpring } from 'react-icons/si'
 import { FaGit } from "react-icons/fa";
 
 var text = "Hover Icon";
@@ -55,6 +55,24 @@ const Technologies = () => {
             <div className='slide'>
                 <DiMongodb size="7rem" className="icon"
                 onMouseEnter={(e) => onHover(e, "MongoDB")}
+                onMouseLeave={(e) => offHover(e)}
+                />
+            </div>
+            <div className='slide'>
+                <DiJava size="7rem" className="icon"
+                onMouseEnter={(e) => onHover(e, "Java")}
+                onMouseLeave={(e) => offHover(e)}
+                />
+            </div>
+            <div className='slide'>
+                <SiSpring size="7rem" className="icon"
+                onMouseEnter={(e) => onHover(e, "Spring")}
+                onMouseLeave={(e) => offHover(e)}
+                />
+            </div>
+            <div className='slide'>
+                <DiMysql size="7rem" className="icon"
+                onMouseEnter={(e) => onHover(e, "MySQL")}
                 onMouseLeave={(e) => offHover(e)}
                 />
             </div>
@@ -122,6 +140,24 @@ const Technologies = () => {
             <div className='slide'>
                 <DiMongodb size="7rem" className="icon"
                 onMouseEnter={(e) => onHover(e, "MongoDB")}
+                onMouseLeave={(e) => offHover(e)}
+                />
+            </div>
+            <div className='slide'>
+                <DiJava size="7rem" className="icon"
+                onMouseEnter={(e) => onHover(e, "Java")}
+                onMouseLeave={(e) => offHover(e)}
+                />
+            </div>
+            <div className='slide'>
+                <SiSpring size="7rem" className="icon"
+                onMouseEnter={(e) => onHover(e, "Spring")}
+                onMouseLeave={(e) => offHover(e)}
+                />
+            </div>
+            <div className='slide'>
+                <DiMysql size="7rem" className="icon"
+                onMouseEnter={(e) => onHover(e, "MySQL")}
                 onMouseLeave={(e) => offHover(e)}
                 />
             </div>
@@ -195,6 +231,8 @@ place-items: center;
     align-items: center;
     padding: 15px;
     perspective: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .icon {
@@ -217,9 +255,8 @@ overflow: hidden;
 `;
 
 const Track = styled.div`
-    gap: 4rem;
     display: flex;
-    width: calc(250px * 18);
+    width: calc(270px * 28);
     animation: scroll 40s linear infinite;
     :hover {
         animation-play-state: paused;
@@ -229,7 +266,7 @@ const Track = styled.div`
             transform: translateX(0);
         }
         100% {
-            transform: translateX(calc(-250px * 9));
+            transform: translateX(calc(-270px * 14));
         }
     }
 `;

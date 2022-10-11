@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
 
 
 const Header = () => {
+  useEffect(() =>  {
+    document.body.style.overflow = "hidden";
+  }, []);
+
   return (
     <HeaderDiv>
         <DivCenter>
@@ -29,6 +33,7 @@ const Header = () => {
 
 const HeaderDiv = styled.div`
 display: grid;
+height: 20vh;
 grid-template-columns: 90% 10%;
 padding: 2vw;
 font-size: 2rem;

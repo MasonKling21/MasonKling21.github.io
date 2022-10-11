@@ -1,72 +1,83 @@
 import React from 'react'
 import styled from 'styled-components'
+import img1 from './imgs/1.jpeg'
+import img2 from './imgs/2.jpeg'
 
 const Projects = () => {
-    document.title = "Projects";
+  document.title = "Projects";
   return (
     <ProjectsDiv>
-        <ProjectsContainer>
-            <Project>
-            <h4>Fantasy Football Website</h4>
-            <p>Currently working on a Fantasy Football Website
-                in which users can login, see players, sort players by different stats,
-                and add players to a watchlist.
-            </p>
-            <a href="">WIP</a>
-            </Project>
-            <Project>
-            <h4>ML Finance Capstone</h4>
-            <p>For my capstone project at OSU me and 2 others
-                collected large amounts of financial data, wrote a machine
-                learning algorithm, and created a UI to predict the &Delta;ROA
-                for companies.
-            </p>
-            <a href="https://github.com/anthonyfil/MLFinanceCapstone">Code</a>
-            </Project>
-        </ProjectsContainer>
+        <Project>
+          <div className='container'>
+            <div className='projectImage'>
+              <img src={ img2 } alt="Fantasy Football App"/>
+            </div>
+            <div className='projectTitle'>
+              <h1> Fantasy Football Application</h1>
+              <div className='projectDescription'>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque magna quis massa sodales gravida. Suspendisse mattis a justo a molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquam fermentum mi eu commodo. Suspendisse eu arcu vehicula lorem luctus mattis. Donec gravida tempus pulvinar. Aenean at ex non lacus vehicula pretium. Quisque nec elit sed odio pellentesque aliquet vitae commodo tortor. Suspendisse at urna mi. Aenean tempus eget tortor congue dapibus. Nullam vitae purus egestas, eleifend quam vitae, egestas mauris.</p>
+                <p>Sed rhoncus augue sem, ac commodo odio viverra eget. Donec hendrerit ante venenatis consequat lobortis. Suspendisse potenti. Fusce urna augue, vehicula eget congue sed, scelerisque sit amet ex. Praesent tellus arcu, hendrerit et euismod sit amet, pharetra in nisl. Pellentesque auctor leo et ultrices rutrum. Maecenas ac libero id erat facilisis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris tempus semper justo, sed ullamcorper massa congue ornare. Praesent rhoncus vel nunc ac mollis.</p> 
+                <div className='projectSrc'>
+                  <a href="https://github.com/anthonyfil/MLFinanceCapstone">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Project>
+        <Project>
+        <div className='container'>
+            <div className='projectImage'>
+              <img src={ img1 } alt="Fantasy Football App"/>
+            </div>
+            <div className='projectTitle'>
+              <h1> Capstone </h1>
+              <div className='projectDescription'>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque magna quis massa sodales gravida. Suspendisse mattis a justo a molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquam fermentum mi eu commodo. Suspendisse eu arcu vehicula lorem luctus mattis. Donec gravida tempus pulvinar. Aenean at ex non lacus vehicula pretium. Quisque nec elit sed odio pellentesque aliquet vitae commodo tortor. Suspendisse at urna mi. Aenean tempus eget tortor congue dapibus. Nullam vitae purus egestas, eleifend quam vitae, egestas mauris.</p>
+                <p>Sed rhoncus augue sem, ac commodo odio viverra eget. Donec hendrerit ante venenatis consequat lobortis. Suspendisse potenti. Fusce urna augue, vehicula eget congue sed, scelerisque sit amet ex. Praesent tellus arcu, hendrerit et euismod sit amet, pharetra in nisl. Pellentesque auctor leo et ultrices rutrum. Maecenas ac libero id erat facilisis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris tempus semper justo, sed ullamcorper massa congue ornare. Praesent rhoncus vel nunc ac mollis.</p> 
+                <div className='projectSrc'>
+                  <a href="https://github.com/anthonyfil/MLFinanceCapstone">Code</a>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </Project>
     </ProjectsDiv>
   )
 }
 
 const ProjectsDiv = styled.div`
-
-`;
-
-const ProjectsContainer = styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr;
-width: 50%;
-margin: auto;
-@media screen and (max-width: 1100px) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  
-    margin: 0 auto;
-  }
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
 `;
 
 const Project = styled.div`
-display: grid;
-grid-template-rows: 10% 80% 10%;
-text-align: center;
-background: linear-gradient(90deg, rgba(11,131,18,1) 0%, rgba(9,121,92,1) 35%, rgba(0,212,255,1) 100%);
-margin: 10%;
-margin-top: 30%;
-height: 30vh;
-border-radius: 30px;
-padding: 3%;
-a {
-    text-decoration: none;
-    color: white;
-    background-color: #0F1624;
-    width: 40%;
-    border-radius: 40px;
-    margin: auto;
-}
-p {
-    padding: 10px;
-}
+    height: 100vh;
+    scroll-snap-align: start;
+    padding-left: 2vw;
+    img {
+      height: 80vh;
+      width: 50vw;
+    }
+    .container {
+      padding-top: 5vh;
+      padding-right: 5vh;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    .projectSrc {
+      margin: auto;
+      font-weight: bold;
+      text-align: center;
+      background: linear-gradient(90deg, rgba(11,131,18,1) 0%, rgba(9,121,92,1) 35%, rgba(0,212,255,1) 100%);
+      width: 10%;
+      border-radius: 10px;
+    }
 `;
 
 export default Projects
