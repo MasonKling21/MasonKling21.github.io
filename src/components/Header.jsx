@@ -33,7 +33,6 @@ const Header = () => {
 
 const HeaderDiv = styled.div`
 display: grid;
-height: 20vh;
 grid-template-columns: 90% 10%;
 padding: 2vw;
 font-size: 2rem;

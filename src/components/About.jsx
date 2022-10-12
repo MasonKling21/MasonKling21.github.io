@@ -34,6 +34,7 @@ const About = () => {
 
 const AboutDiv = styled.div`
 width: 100%;
+overflow: auto;
 display: block;
 margin: 30px;
 `;
