@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import img1 from './imgs/1.jpeg'
-import img2 from './imgs/2.jpeg'
+import img1 from './imgs/1.png'
+import img2 from './imgs/2.png'
 
 const Projects = () => {
   document.title = "Projects";
@@ -10,15 +10,27 @@ const Projects = () => {
         <Project>
           <div className='container'>
             <div className='projectImage'>
-              <img src={ img2 } alt="Fantasy Football App"/>
+              <img src={ img1 } alt="Fantasy Football App"/>
             </div>
             <div className='projectTitle'>
               <h1> Fantasy Football Application</h1>
-              <div className='projectDescription'>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque magna quis massa sodales gravida. Suspendisse mattis a justo a molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquam fermentum mi eu commodo. Suspendisse eu arcu vehicula lorem luctus mattis. Donec gravida tempus pulvinar. Aenean at ex non lacus vehicula pretium. Quisque nec elit sed odio pellentesque aliquet vitae commodo tortor. Suspendisse at urna mi. Aenean tempus eget tortor congue dapibus. Nullam vitae purus egestas, eleifend quam vitae, egestas mauris.</p>
-                <p>Sed rhoncus augue sem, ac commodo odio viverra eget. Donec hendrerit ante venenatis consequat lobortis. Suspendisse potenti. Fusce urna augue, vehicula eget congue sed, scelerisque sit amet ex. Praesent tellus arcu, hendrerit et euismod sit amet, pharetra in nisl. Pellentesque auctor leo et ultrices rutrum. Maecenas ac libero id erat facilisis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris tempus semper justo, sed ullamcorper massa congue ornare. Praesent rhoncus vel nunc ac mollis.</p> 
+              <div className='projectDescr  iption'>
+                <p>I am currently working on this</p>
+                <p>Finished Features</p>
+                <ul>
+                  <li>Scraped player data from leading fantasy football websites using Python</li>
+                  <li>Created REST API with CRUD functionality using Spring Boot, and MongoDB allowing users to
+securely register and login.</li>
+                </ul>
+                <p>Features In Progress</p>
+                <ul>
+                <li>Implementing functionality to sort players by specific stats, team, or name</li>
+                <li>Allow users to add players to a personal watchlist to monitor performance or compare players</li>
+                <li>Find team logos with transparent backgrounds</li>
+                <li>Work on making the header look prettier</li>
+                </ul>
                 <div className='projectSrc'>
-                  <a href="https://github.com/anthonyfil/MLFinanceCapstone">Code</a>
+                  <a href="/#/projects">WIP</a>
                 </div>
               </div>
             </div>
@@ -27,47 +39,20 @@ const Projects = () => {
         <Project>
         <div className='container'>
             <div className='projectImage'>
-              <img src={ img1 } alt="Fantasy Football App"/>
-            </div>
-            <div className='projectTitle'>
-              <h1> Capstone </h1>
-              <div className='projectDescription'>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque magna quis massa sodales gravida. Suspendisse mattis a justo a molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquam fermentum mi eu commodo. Suspendisse eu arcu vehicula lorem luctus mattis. Donec gravida tempus pulvinar. Aenean at ex non lacus vehicula pretium. Quisque nec elit sed odio pellentesque aliquet vitae commodo tortor. Suspendisse at urna mi. Aenean tempus eget tortor congue dapibus. Nullam vitae purus egestas, eleifend quam vitae, egestas mauris.</p>
-                <p>Sed rhoncus augue sem, ac commodo odio viverra eget. Donec hendrerit ante venenatis consequat lobortis. Suspendisse potenti. Fusce urna augue, vehicula eget congue sed, scelerisque sit amet ex. Praesent tellus arcu, hendrerit et euismod sit amet, pharetra in nisl. Pellentesque auctor leo et ultrices rutrum. Maecenas ac libero id erat facilisis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris tempus semper justo, sed ullamcorper massa congue ornare. Praesent rhoncus vel nunc ac mollis.</p> 
-                <div className='projectSrc'>
-                  <a href="https://github.com/anthonyfil/MLFinanceCapstone">Code</a>
-                </div> 
-              </div>
-            </div>
-          </div>
-        </Project>
-        <Project>
-          <div className='container'>
-            <div className='projectImage'>
               <img src={ img2 } alt="Fantasy Football App"/>
             </div>
             <div className='projectTitle'>
-              <h1> Fantasy Football Application</h1>
+              <h1> Leveraging Machine Learning to Predict the Movement of Securities </h1>
               <div className='projectDescription'>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque magna quis massa sodales gravida. Suspendisse mattis a justo a molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquam fermentum mi eu commodo. Suspendisse eu arcu vehicula lorem luctus mattis. Donec gravida tempus pulvinar. Aenean at ex non lacus vehicula pretium. Quisque nec elit sed odio pellentesque aliquet vitae commodo tortor. Suspendisse at urna mi. Aenean tempus eget tortor congue dapibus. Nullam vitae purus egestas, eleifend quam vitae, egestas mauris.</p>
-                <p>Sed rhoncus augue sem, ac commodo odio viverra eget. Donec hendrerit ante venenatis consequat lobortis. Suspendisse potenti. Fusce urna augue, vehicula eget congue sed, scelerisque sit amet ex. Praesent tellus arcu, hendrerit et euismod sit amet, pharetra in nisl. Pellentesque auctor leo et ultrices rutrum. Maecenas ac libero id erat facilisis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris tempus semper justo, sed ullamcorper massa congue ornare. Praesent rhoncus vel nunc ac mollis.</p> 
-                <div className='projectSrc'>
-                  <a href="https://github.com/anthonyfil/MLFinanceCapstone">Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Project>
-        <Project>
-        <div className='container'>
-            <div className='projectImage'>
-              <img src={ img1 } alt="Fantasy Football App"/>
-            </div>
-            <div className='projectTitle'>
-              <h1> Capstone </h1>
-              <div className='projectDescription'>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque magna quis massa sodales gravida. Suspendisse mattis a justo a molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquam fermentum mi eu commodo. Suspendisse eu arcu vehicula lorem luctus mattis. Donec gravida tempus pulvinar. Aenean at ex non lacus vehicula pretium. Quisque nec elit sed odio pellentesque aliquet vitae commodo tortor. Suspendisse at urna mi. Aenean tempus eget tortor congue dapibus. Nullam vitae purus egestas, eleifend quam vitae, egestas mauris.</p>
-                <p>Sed rhoncus augue sem, ac commodo odio viverra eget. Donec hendrerit ante venenatis consequat lobortis. Suspendisse potenti. Fusce urna augue, vehicula eget congue sed, scelerisque sit amet ex. Praesent tellus arcu, hendrerit et euismod sit amet, pharetra in nisl. Pellentesque auctor leo et ultrices rutrum. Maecenas ac libero id erat facilisis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris tempus semper justo, sed ullamcorper massa congue ornare. Praesent rhoncus vel nunc ac mollis.</p> 
+                <p>For my senior software engineering project at Oregon State University I worked closely with a team of 3 including myself. We were tasked with utilizing machine learning to predict the delta ROA of a company given certain data.</p>
+                <p>A list of tasks I worked on:</p> 
+                <ul>
+                  <li>Leveraged machine learning algorithms to predict quarterly change in Return on Assets</li>
+                  <li>Worked in an Agile team to build, test, and deploy an application to predict company profits</li>
+                  <li>Used a Trello Kanban board to manage sprints and to keep track of ticket assignments</li>
+                  <li>Utilized data mining to gather large amounts of XBRL tagged data from the SEC EDGAR API</li>
+                  <li>Designed UI for data visualization that utilized subprocesses using the Kivy library in Python</li>
+                </ul>
                 <div className='projectSrc'>
                   <a href="https://github.com/anthonyfil/MLFinanceCapstone">Code</a>
                 </div> 
@@ -90,16 +75,18 @@ const ProjectsDiv = styled.div`
 
 const Project = styled.div`
     height: auto;
+    margin-top: 20px;
     scroll-snap-align: start end;
     padding-left: 2vw;
     img {
+      box-shadow: 0 0 5px 5px grey;
       @media screen and (max-width: 750px) {
         height: 80vh;
         width: 80vw;
       }
       @media screen and (min-width: 750px) {
         height: 80vh;
-        width: 50vw;
+        width: 60vw;
       }
     }
     .container {
@@ -113,7 +100,7 @@ const Project = styled.div`
         padding-top: 5vh;
         padding-right: 5vh;
         display: grid;
-        grid-template-columns: 55% 45%;
+        grid-template-columns: 65% 35%;
         color: rgba(255, 255, 255, 0.75);
       }
     }
