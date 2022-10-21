@@ -47,8 +47,7 @@ background: linear-gradient(121.57deg, #FFFFFF 18.77%, rgba(255, 255, 255, 0.66)
 margin-bottom: 16px;
 @media screen and (max-width: 640px) {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: flexbox;
   
     margin: 0 auto;
   }
@@ -64,10 +63,10 @@ background: linear-gradient(121.57deg, #FFFFFF 18.77%, rgba(255, 255, 255, 0.66)
 -webkit-text-fill-color: transparent;
 @media screen and (max-width: 640px) {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: flexbox;
+    padding: 0;
   
-    margin: 0 auto;
+    margin: 0;
   }
 `;
 

@@ -69,19 +69,21 @@ securely register and login.</li>
 
 const ProjectsDiv = styled.div`
       height: auto;
-      scroll-snap-type: y mandatory;
       overflow-y: scroll;
+      @media screen and (min-width: 750px) {
+        scroll-snap-type: y mandatory;
+      }
 `;
 
 const Project = styled.div`
     height: auto;
-    margin-top: 20px;
     scroll-snap-align: start end;
+    margin-top: 20px;
     padding-left: 2vw;
     img {
       box-shadow: 0 0 5px 5px grey;
       @media screen and (max-width: 750px) {
-        height: 80vh;
+        height: 40vh;
         width: 80vw;
       }
       @media screen and (min-width: 750px) {
