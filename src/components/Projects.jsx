@@ -21,10 +21,10 @@ const Projects = () => {
                   <li>Scraped player data from leading fantasy football websites using Python</li>
                   <li>Created REST API with CRUD functionality using Spring Boot, and MongoDB allowing users to
 securely register and login.</li>
+                  <li>Implemented functionality to sort players by specific stats, team, or name</li>
                 </ul>
                 <p>Features In Progress</p>
                 <ul>
-                <li>Implementing functionality to sort players by specific stats, team, or name</li>
                 <li>Allow users to add players to a personal watchlist to monitor performance or compare players</li>
                 <li>Find team logos with transparent backgrounds</li>
                 <li>Work on making the header look prettier</li>
