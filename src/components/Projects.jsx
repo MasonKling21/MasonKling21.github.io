@@ -2,11 +2,39 @@ import React from 'react'
 import styled from 'styled-components'
 import img1 from './imgs/1.png'
 import img2 from './imgs/2.png'
+import img3 from './imgs/3.png'
 
 const Projects = () => {
   document.title = "Projects";
   return (
     <ProjectsDiv>
+          <Project>
+          <div className='container'>
+            <div className='projectImage'>
+              <img src={ img3 } alt="Feed Me"/>
+            </div>
+            <div className='projectTitle'>
+              <h1> Feed Me</h1>
+              <div className='projectDescription'>
+                <p>
+                  A bot built using Python and Selenium. I would've made a Twitter developer account but it takes a long time to get approved.
+                  There isn't much of a following yet and I'm not sure if there ever will be but the functionality is there if it happens.
+                </p>
+                <p>A list of tasks I worked on:</p> 
+                <ul>
+                  <li>Developed Twitter bot in Python that required a certain number of user interactions daily</li>
+                  <li>Utilized selenium to log in and get number of followers, likes, comments, and retweets</li>
+                  <li>Created functionality to require a daily interaction goal be met based on number of followers</li>
+                  <li>Implemented logic to post a different ASCII pet image based on if it met daily interactions</li>
+                  <li>Wrote functionality to delete account if daily interaction goals not met over specified timeframe</li>
+                </ul>
+                <div className='projectSrc'>
+                  <a href="/#/projects">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Project>
         <Project>
           <div className='container'>
             <div className='projectImage'>
@@ -15,19 +43,18 @@ const Projects = () => {
             <div className='projectTitle'>
               <h1> Fantasy Football Application</h1>
               <div className='projectDescr  iption'>
-                <p>I am currently working on this</p>
-                <p>Finished Features</p>
+                <p>
+                  A fun web app that I built to improve my full-stack skills. I have been playing fantasy football and there were a few functionalities that
+                  most of the fantasy football apps I use didn't have so I figured I would try my hand at them. 
+                </p>
+                <p>A list of tasks I worked on:</p> 
                 <ul>
                   <li>Scraped player data from leading fantasy football websites using Python</li>
                   <li>Created REST API with CRUD functionality using Spring Boot, and MongoDB allowing users to
 securely register and login.</li>
                   <li>Implemented functionality to sort players by specific stats, team, or name</li>
-                </ul>
-                <p>Features In Progress</p>
-                <ul>
-                <li>Allow users to add players to a personal watchlist to monitor performance or compare players</li>
-                <li>Find team logos with transparent backgrounds</li>
-                <li>Work on making the header look prettier</li>
+                  <li>Users can add players to a personal watchlist to monitor performance or compare players</li>
+                  <li>Utilized Docker to create containers and Kubernetes to balance container loads</li>
                 </ul>
                 <div className='projectSrc'>
                   <a href="/#/projects">WIP</a>
@@ -39,7 +66,7 @@ securely register and login.</li>
         <Project>
         <div className='container'>
             <div className='projectImage'>
-              <img src={ img2 } alt="Fantasy Football App"/>
+              <img src={ img2 } alt="Leveraging Machine Learning to Predict the Movement of Securities"/>
             </div>
             <div className='projectTitle'>
               <h1> Leveraging Machine Learning to Predict the Movement of Securities </h1>
