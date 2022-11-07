@@ -29,7 +29,7 @@ const Projects = () => {
                   <li>Wrote functionality to delete account if daily interaction goals not met over specified timeframe</li>
                 </ul>
                 <div className='projectSrc'>
-                  <a href="/#/projects">Code</a>
+                  <a href="https://github.com/MasonKling21/FeedMe">Code</a>
                 </div>
               </div>
             </div>
@@ -42,7 +42,7 @@ const Projects = () => {
             </div>
             <div className='projectTitle'>
               <h1> Fantasy Football Application</h1>
-              <div className='projectDescr  iption'>
+              <div className='projectDescription'>
                 <p>
                   A fun web app that I built to improve my full-stack skills. I have been playing fantasy football and there were a few functionalities that
                   most of the fantasy football apps I use didn't have so I figured I would try my hand at them. 
@@ -57,7 +57,7 @@ securely register and login.</li>
                   <li>Utilized Docker to create containers and Kubernetes to balance container loads</li>
                 </ul>
                 <div className='projectSrc'>
-                  <a href="/#/projects">WIP</a>
+                  <a href="https://github.com/MasonKling21/FantasyFootball">Code</a>
                 </div>
               </div>
             </div>
