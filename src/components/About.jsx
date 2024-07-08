@@ -54,7 +54,7 @@ const HeaderDiv = styled.div`
 
 const BodyDiv = styled.div`
     max-width: 80%;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 20px;
     font-weight: 400;
     padding-bottom: 3.6rem;
