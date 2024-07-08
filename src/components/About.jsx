@@ -9,18 +9,19 @@ const About = () => {
         Welcome To My Portfolio
         </HeaderDiv>
         <BodyDiv>
-            My name is Mason Kling and I am a Software Engineer
-            who recently graduated from Oregon State
-            University with a Bachelor of Science in
-            Computer Science. At OSU I took classes in
-            Software Engineering, Web Development, Machine Learning,
-            Data Structures, Algorithms, and much more.
+            My name is Mason Kling, and I am a Software Engineer with a Bachelor of Science
+            in Computer Science from Oregon State University. During my time at OSU, I took courses
+            in Software Engineering, Web Development, Machine Learning, Data Structures, Algorithms, and more.
             <br/>
-            <br/>
-            The projects page contains a few of the projects I've worked on.
-            I'm always creating so if you 
-            check back in the future there will be more.
-            <br/>
+            <br>
+            After graduating, I joined Cognizant as a Software Engineer, where I primarily focused on back-end development
+            using Java, C#, and Python for a large insurance company. My responsibilities included fixing bugs in production
+            and lower environments, deploying changes, and developing enhancements to improve system performance and reliability.
+            </br>
+            <br>
+            I am currently seeking a position where I can develop and improve features in a dynamic,
+            fast-moving company that offers opportunities for growth.
+            </br>
             <br/>
             If you would like to contact me you can shoot me an email at:
             <br/>
