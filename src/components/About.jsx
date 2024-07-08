@@ -40,7 +40,7 @@ const AboutDiv = styled.div`
 
 const HeaderDiv = styled.div`
     font-weight: 800;
-    font-size: 65px;
+    font-size: 40px;
     background: linear-gradient(121.57deg, #FFFFFF 18.77%, rgba(255, 255, 255, 0.66) 60.15%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,7 +54,7 @@ const HeaderDiv = styled.div`
 
 const BodyDiv = styled.div`
     max-width: 80%;
-    font-size: 24px;
+    font-size: 16px;
     line-height: 40px;
     font-weight: 400;
     padding-bottom: 3.6rem;
