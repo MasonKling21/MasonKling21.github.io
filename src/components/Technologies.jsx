@@ -53,7 +53,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #0d1117;
+    background-color: #0F1624;
     color: white;
     overflow: hidden;
 `;
