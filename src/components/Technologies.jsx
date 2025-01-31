@@ -1,107 +1,108 @@
-import { useState } from "react";
-import styled from "styled-components";
-import {DiReact, DiPython, DiJavascript1, DiNodejs, DiMongodb, DiHtml5, DiCss3, DiJava, DiMysql} from "react-icons/di";
-import { SiCplusplus, SiC, SiWindows, SiSpring } from "react-icons/si";
+import { useState } from 'react';
+import styled from 'styled-components';
+import { DiReact, DiPython, DiJavascript1, DiNodejs, DiMongodb, DiHtml5, DiCss3, DiJava, DiMysql } from "react-icons/di";
+import { SiCplusplus, SiC, SiWindows, SiSpring } from 'react-icons/si';
 import { FaGit } from "react-icons/fa";
 
-const techList = [
-  { icon: <DiReact />, name: "React" },
-  { icon: <DiPython />, name: "Python" },
-  { icon: <DiJavascript1 />, name: "JavaScript" },
-  { icon: <DiNodejs />, name: "Node.js" },
-  { icon: <DiMongodb />, name: "MongoDB" },
-  { icon: <DiJava />, name: "Java" },
-  { icon: <SiSpring />, name: "Spring" },
-  { icon: <DiMysql />, name: "MySQL" },
-  { icon: <DiHtml5 />, name: "HTML5" },
-  { icon: <DiCss3 />, name: "CSS3" },
-  { icon: <SiCplusplus />, name: "C++" },
-  { icon: <SiC />, name: "C" },
-  { icon: <FaGit />, name: "Git" },
-  { icon: <SiWindows />, name: "Windows" },
+const techIcons = [
+    { icon: <DiReact />, name: "React" },
+    { icon: <DiPython />, name: "Python" },
+    { icon: <DiJavascript1 />, name: "JavaScript" },
+    { icon: <DiNodejs />, name: "Node.js" },
+    { icon: <DiMongodb />, name: "MongoDB" },
+    { icon: <DiJava />, name: "Java" },
+    { icon: <SiSpring />, name: "Spring" },
+    { icon: <DiMysql />, name: "MySQL" },
+    { icon: <DiHtml5 />, name: "HTML5" },
+    { icon: <DiCss3 />, name: "CSS3" },
+    { icon: <SiCplusplus />, name: "C++" },
+    { icon: <SiC />, name: "C" },
+    { icon: <FaGit />, name: "Git" },
+    { icon: <SiWindows />, name: "Windows" }
 ];
 
+const repeatedIcons = [...techIcons, ...techIcons];
+
 const Technologies = () => {
-  document.title = "Technologies";
+    const [hoveredText, setHoveredText] = useState("Hover over an icon");
 
-  const [hoverText, setHoverText] = useState("Hover over an icon");
-
-  return (
-    <>
-      <CarouselContainer>
-        <Carousel>
-          <Track>
-            {[...techList, ...techList].map((tech, index) => (
-              <Slide key={index}
-                onMouseEnter={() => setHoverText(tech.name)}
-                onMouseLeave={() => setHoverText("Hover over an icon")}
-              >
-                {tech.icon}
-              </Slide>
-            ))}
-          </Track>
-        </Carousel>
-        <TextContainer>
-          <h1>{hoverText}</h1>
-        </TextContainer>
-      </CarouselContainer>
-    </>
-  );
+    return (
+        <Container>
+            <Title>{hoveredText}</Title>
+            <Carousel>
+                <Track>
+                    {repeatedIcons.map((tech, index) => (
+                        <Slide key={index}>
+                            <IconWrapper 
+                                onMouseEnter={() => setHoveredText(tech.name)}
+                                onMouseLeave={() => setHoveredText("Hover over an icon")}
+                            >
+                                {tech.icon}
+                            </IconWrapper>
+                        </Slide>
+                    ))}
+                </Track>
+            </Carousel>
+        </Container>
+    );
 };
 
-const TextContainer = styled.div`
-  width: 300px;
-  height: 64px;
-  text-align: center;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.2rem;
-  background: linear-gradient(90deg, rgba(11,131,18,1) 0%, rgba(9,121,92,1) 35%, rgba(0,212,255,1) 100%);
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #0d1117;
+    color: white;
+    overflow: hidden;
 `;
 
-const CarouselContainer = styled.div`
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Title = styled.h1`
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #00c8ff;
 `;
 
 const Carousel = styled.div`
-  width: 90%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
 `;
 
 const Track = styled.div`
-  display: flex;
-  width: calc(150px * ${techList.length * 2});
-  animation: scroll 30s linear infinite;
+    display: flex;
+    width: calc(200px * 28);
+    animation: scroll 25s linear infinite;
 
-  :hover {
-    animation-play-state: paused;
-  }
+    &:hover {
+        animation-play-state: paused;
+    }
 
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-150px * ${techList.length})); }
-  }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-200px * 14)); }
+    }
 `;
 
 const Slide = styled.div`
-  height: 150px;
-  width: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 4rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+    height: 180px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
-  &:hover {
-    transform: scale(1.2);
-  }
+const IconWrapper = styled.div`
+    font-size: 7rem;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.2);
+        color: #00c8ff;
+    }
 `;
 
 export default Technologies;
