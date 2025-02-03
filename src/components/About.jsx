@@ -12,6 +12,8 @@ const About = () => {
                 Welcome To My Portfolio
             </HeaderDiv>
             <BodyDiv>
+                (I'm in the process of building a new portfolio website. It should be done in a few days and will be replacing this.)
+                
                 My name is Mason Kling, and I am a Software Engineer with a Bachelor of Science
                 in Computer Science from Oregon State University. During my time at OSU, I took courses
                 in Software Engineering, Web Development, Machine Learning, Data Structures, Algorithms, and more.
