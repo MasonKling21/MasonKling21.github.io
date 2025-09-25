@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 14px;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .terminal {
+            width: 100%;
+            height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: black;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .header {
+            color: #00ff00;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            border-bottom: 1px solid #00ff00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        h1 {
+            text-shadow: 0 0 25px #00aa00;
+        }
+
+        h3 {
+            text-shadow: 0 0 5px #00aa00;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        h3:hover {
+            color: #00aa00;
+            text-shadow: 0 0 20px #00ff00;
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .output {
+            height: calc(100vh - 140px);
+            overflow-y: auto;
+            position: relative;
+            z-index: 2;
+            scrollbar-width: thin;
+            scrollbar-color: #00ff00 #000;
+        }
+        
+        .output::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .output::-webkit-scrollbar-track {
+            background: #000;
+        }
+        
+        .output::-webkit-scrollbar-thumb {
+            background: #00aa00;
+            border-radius: 4px;
+        }
+        
+        .line {
+            margin-bottom: 2px;
+            word-wrap: break-word;
+        }
+        
+        .prompt {
+            color: #00aa00;
+            text-shadow: 0 0 4px #00ff00;
+        }
+        
+        .input-line {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .input-prompt {
+            color: #00aa00;
+            margin-right: 10px;
+            text-shadow: 0 0 4px #00ff00;
+        }
+        
+        #command-input {
+            background: transparent;
+            border: none;
+            color: #00ff00;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 14px;
+            outline: none;
+            flex: 1;
+            text-shadow: 0 0 5px #00ff00;
+            caret-color: transparent;
+        }
+        
+        .cursor {
+            animation: blink 1s infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .error {
+            color: #ff4444;
+        }
+        
+        .success {
+            color: #44ff44;
+        }
+        
+        .info {
+            color: #4444ff;
+        }
+        
+        .boot-text {
+            color: #00aa00;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 10px;
+            }
+            
+            .terminal {
+                padding: 10px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            
+            .nav-container {
+                width: 100%;
+                justify-content: space-between;
+                gap: 3px;
+            }
+            
+            h3 {
+                font-size: 12px;
+                padding: 5px 8px;
+                flex: 1;
+                text-align: center;
+                min-width: 0;
+            }
+            
+            .nav-container p {
+                display: none;
+            }
+            
+            .output {
+                height: calc(100vh - 180px);
+                font-size: 12px;
+            }
+            
+            .input-line {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+            }
+            
+            .input-prompt {
+                font-size: 12px;
+                margin-right: 5px;
+            }
+            
+            #command-input {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 11px;
+            }
+            
+            h1 {
+                font-size: 16px;
+            }
+            
+            h3 {
+                font-size: 7px;
+                padding: 2px 4px;
+            }
+            
+            .output {
+                height: calc(100vh - 170px);
+                font-size: 11px;
+            }
+            
+            .input-prompt {
+                font-size: 11px;
+            }
+            
+            #command-input {
+                font-size: 11px;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            h3 {
+                padding: 8px 10px;
+            }
+            
+            h3:active {
+                color: #00aa00;
+                text-shadow: 0 0 20px #00ff00;
+                background: rgba(0, 255, 0, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="header">
+            <h1 style="color: #00ff00;" class="boot-text">Mason Kling's Portfolio</h1>
+            <div class="nav-container">
+                <h3 style="color: #00ff00;" onclick="executeCommand('clear'); executeCommand('about')">About</h3>
+                <p>|</p>
+                <h3 style="color: #00ff00;" onclick="executeCommand('clear'); executeCommand('experience')">Experience</h3>
+                <p>|</p>
+                <h3 style="color: #00ff00;" onclick="executeCommand('clear'); executeCommand('technologies')">Technologies</h3>
+                <p>|</p>
+                <h3 style="color: #00ff00;" onclick="executeCommand('clear'); executeCommand('projects')">Projects</h3>
+                <p>|</p>
+                <h3 style="color: #00ff00;" onclick="executeCommand('clear'); executeCommand('links')">Links</h3>
+            </div>
+        </div>
+        
+        <div class="output" id="output">
+            <div class="line">Welcome to my portfolio. Type 'help' for available commands or click the commands above.</div>
+        </div>
+        
+        <div class="input-line">
+            <span class="input-prompt">root@user:~$</span>
+            <div style="position: relative; flex: 1;">
+                <input type="text" id="command-input" autocomplete="off" spellcheck="false">
+                <span class="cursor" id="cursor">█</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        const input = document.getElementById('command-input');
+        const cursor = document.getElementById('cursor');
+        let commandHistory = [];
+        let historyIndex = -1;
+
+let welcomeMessage = "Welcome to my portfolio. Type 'help' for available commands or click the commands above.";
+
+let aboutMe = `
+<div>
+<div style="color: #00aa00; border-bottom: 1px solid #00aa00; padding-right: 20px; text-shadow: 0 0 2px #00ff00; margin-bottom: 15px;">
+<span style="font-weight: 700; font-size: 16px;">About Me</span>
+</div>
+<div style="position: relative; padding-left: 20px; padding-right: 20px; color: #00ff00;">
+> I am a Data Engineer specialized in cloud-native ETL pipelines and workflow automation, with proven impact improving SLA compliance to <span style="color: #ff4444; font-weight: bold;">95%</span> and reducing manual data handling by <span style="color: #ff4444; font-weight: bold;">75%</span> for high-volume insurance operations.
+
+<br><br>> Skilled in building end-to-end data pipelines with <span style="color: #44aaff;">Python</span>, <span style="color: #44aaff;">SQL</span>, and <span style="color: #44aaff;">Spark</span> on <span style="color: #44aaff;">Azure</span>, and experience integrating ML solutions for predictive analytics and real-time reporting.
+
+<br><br>> Adept at delivering production-grade data systems in <span style="color: #44aaff;">Agile</span> environments.
+</div>
+</div>
+`;
+
+let experience = `
+<div>
+<div style="color: #00aa00; border-bottom: 1px solid #00aa00; padding-right: 20px; text-shadow: 0 0 2px #00ff00; margin-bottom: 15px;">
+<span style="font-weight: 700; font-size: 16px;">Data Engineer</span>, <span style="color: #44ff44;">Cognizant</span><span style="color: #88ff88; float: right;">Jan 2023 – May 2024</span>
+</div>
+<div>
+<div style="position: relative; padding-left: 20px; padding-right: 20px; color: #00ff00;">
+> Architected and deployed enterprise-grade ETL pipelines using <span style="color: #44aaff;">Apache Spark</span> and <span style="color: #44aaff;">Databricks</span>, processing <span style="color: #ff4444; font-weight: bold;">100,000+ daily</span> insurance transactions.
+
+<br><br>> Automated data ingestion workflows with <span style="color: #44aaff;">Bash scripts</span> and error-handling logic, cutting manual data tasks by <span style="color: #ff4444; font-weight: bold;">75%</span> and ensuring timely data delivery to downstream systems.
+
+<br><br>> Spearheaded <span style="color: #44aaff;">Azure cloud migration</span> of legacy data platforms, developing microservices in <span style="color: #44aaff;">Java with Spring Boot</span> to modernize architecture, boost system performance by <span style="color: #ff4444; font-weight: bold;">40%</span>, and ensure seamless data integrity.
+
+<br><br>> Implemented comprehensive data validation frameworks using <span style="color: #44aaff;">Python</span> and <span style="color: #44aaff;">SQL</span>, reducing downstream data quality issues by <span style="color: #ff4444; font-weight: bold;">60%</span> and improving API success rates to <span style="color: #ff4444; font-weight: bold;">98.5%</span>.
+
+<br><br>> Designed and deployed monitoring solutions using <span style="color: #44aaff;">Splunk</span> and custom alerting, achieving <span style="color: #ff4444; font-weight: bold;">95% SLA compliance</span> and reducing incident resolution time by <span style="color: #ff4444; font-weight: bold;">30%</span>.
+
+<br><br>> Optimized <span style="color: #44aaff;">SQL queries</span> and <span style="color: #44aaff;">Spark jobs</span> for high-volume data processing, improving pipeline performance by <span style="color: #ff4444; font-weight: bold;">25%</span> and reducing compute costs.
+</div>
+</div>
+</div>
+`;
+
+let projects = `
+<div>
+<div style="color: #00aa00; border-bottom: 1px solid #00aa00; padding-right: 20px; text-shadow: 0 0 2px #00ff00; margin-bottom: 15px;">
+<span style="font-weight: 700; font-size: 16px;">Portfolio Projects</span>
+</div>
+
+<div style="margin-bottom: 25px;">
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+<div>
+<span style="color: #44ff44; font-weight: bold; font-size: 15px;">&Delta;ROA Machine Learning Capstone Project</span>
+<a href="https://github.com/anthonyfil/MLFinanceCapstone" target="_blank" style="color: #88ff88; text-decoration: none; margin-left: 10px; font-size: 12px;">[github]</a>
+</div>
+</div>
+<div style="position: relative; padding-left: 20px; padding-right: 20px; color: #00ff00;">
+> Translated finance research into actionable insights by building a production-ready machine learning model and data pipeline in collaboration with an Oregon State University professor.
+</div>
+</div>
+
+<div style="margin-bottom: 25px;">
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+<div>
+<span style="color: #44ff44; font-weight: bold; font-size: 15px;">Fantasy Football Companion App</span>
+<a href="https://github.com/MasonKling21/FantasyFootball" target="_blank" style="color: #88ff88; text-decoration: none; margin-left: 10px; font-size: 12px;">[github]</a>
+</div>
+</div>
+<div style="position: relative; padding-left: 20px; padding-right: 20px; color: #00ff00;">
+> Developed predictive ML models for player performance forecasting and injury risk assessment, achieving top-2 fantasy league finishes in consecutive seasons.
+</div>
+</div>
+
+<div style="margin-bottom: 25px;">
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+<div>
+<span style="color: #44ff44; font-weight: bold; font-size: 15px;">Experimental Twitter/X Bot</span>
+<a href="https://github.com/MasonKling21/FeedMe" target="_blank" style="color: #88ff88; text-decoration: none; margin-left: 10px; font-size: 12px;">[github]</a>
+</div>
+</div>
+<div style="position: relative; padding-left: 20px; padding-right: 20px; color: #00ff00;">
+> A fun experimental bot account that required daily user interaction to stay alive. Utilized Selenium for the majority of features.
+</div>
+</div>
+</div>
+`;
+
+let links = `
+<div>
+<div style="color: #00aa00; border-bottom: 1px solid #00aa00; padding-right: 20px; text-shadow: 0 0 2px #00ff00; margin-bottom: 15px;">
+<span style="font-weight: 700; font-size: 16px;">Connect With Me</span>
+</div>
+<div style="position: relative; padding-left: 20px; padding-right: 20px; color: #00ff00;">
+> <span style="color: #00ff00;">LinkedIn:</span> <a href="https://www.linkedin.com/in/mason-kling/" target="_blank" style="color: #88ff88; text-decoration: none;">linkedin.com/in/mason-kling</a>
+
+<br><br>> <span style="color: #00ff00;">GitHub:</span> <a href="https://github.com/MasonKling21" target="_blank" style="color: #88ff88; text-decoration: none;">github.com/MasonKling21</a>
+
+<br><br>> <span style="color: #00ff00;">Email:</span> <a href="mailto:mason11kling@gmail.com" style="color: #88ff88; text-decoration: none;">mason11kling@gmail.com</a>
+</div>
+</div>
+`;
+
+let technologies = `
+<div>
+<div style="color: #00aa00; border-bottom: 1px solid #00aa00; padding-right: 20px; text-shadow: 0 0 2px #00ff00; margin-bottom: 15px;">
+<span style="font-weight: 700; font-size: 16px;">Technical Skills</span>
+</div>
+
+<div style="margin-bottom: 15px;">
+<div style="color: #44ff44; font-weight: bold; margin-bottom: 8px;">Programming & Scripting:</div>
+<div style="position: relative; padding-left: 20px; color: #00ff00;">
+> <span style="color: #44aaff;">Python</span>, <span style="color: #44aaff;">Java</span>, <span style="color: #44aaff;">SQL</span>, <span style="color: #44aaff;">Bash</span>
+</div>
+</div>
+
+<div style="margin-bottom: 15px;">
+<div style="color: #44ff44; font-weight: bold; margin-bottom: 8px;">Big Data & Analytics:</div>
+<div style="position: relative; padding-left: 20px; color: #00ff00;">
+> <span style="color: #44aaff;">Apache Spark</span>, <span style="color: #44aaff;">Apache Airflow</span>, <span style="color: #44aaff;">Databricks</span>, <span style="color: #44aaff;">Delta Lake</span>, <span style="color: #44aaff;">Apache Kafka</span>
+</div>
+</div>
+
+<div style="margin-bottom: 15px;">
+<div style="color: #44ff44; font-weight: bold; margin-bottom: 8px;">Cloud Platforms:</div>
+<div style="position: relative; padding-left: 20px; color: #00ff00;">
+> <span style="color: #44aaff;">Microsoft Azure</span> (<span style="color: #66aaff;">Data Factory</span>, <span style="color: #66aaff;">Synapse Analytics</span>, <span style="color: #66aaff;">Blob Storage</span>, <span style="color: #66aaff;">Data Lake Gen2</span>)
+</div>
+</div>
+
+<div style="margin-bottom: 15px;">
+<div style="color: #44ff44; font-weight: bold; margin-bottom: 8px;">Infrastructure & DevOps:</div>
+<div style="position: relative; padding-left: 20px; color: #00ff00;">
+> <span style="color: #44aaff;">Docker</span>, <span style="color: #44aaff;">Kubernetes</span>, <span style="color: #44aaff;">Terraform</span>, <span style="color: #44aaff;">CI/CD</span>, <span style="color: #44aaff;">Git</span>
+</div>
+</div>
+
+<div style="margin-bottom: 15px;">
+<div style="color: #44ff44; font-weight: bold; margin-bottom: 8px;">Machine Learning:</div>
+<div style="position: relative; padding-left: 20px; color: #00ff00;">
+> <span style="color: #44aaff;">scikit-learn</span>, <span style="color: #44aaff;">TensorFlow</span>, <span style="color: #44aaff;">Pandas</span>, <span style="color: #44aaff;">NumPy</span>
+</div>
+</div>
+</div>
+`;
+
+        function updateCursor() {
+            const inputRect = input.getBoundingClientRect();
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            context.font = '14px "Source Code Pro", monospace';
+            const textWidth = context.measureText(input.value).width;
+            cursor.style.left = textWidth + 'px';
+        }
+
+        input.addEventListener('input', updateCursor);
+        input.addEventListener('keydown', (e) => {
+            setTimeout(updateCursor, 0);
+        });
+        input.addEventListener('keyup', updateCursor);
+        input.addEventListener('click', updateCursor);
+        
+        let currentPath = '/home/user';
+        
+        const commands = {
+            help: () => {
+                return `Available commands:
+<br>help          - Show available commands
+<br>whoami        - Display summary of my experience
+<br>experience    - Display professional experience
+<br>projects      - Display projects
+<br>links         - Display links to Github, and LinkedIn
+<br>date          - Show current date and time
+<br>echo [text]   - Display text
+<br>history       - Show command history
+<br>clear         - Clear the terminal`;
+            },
+
+            whoami: () => { 
+                return aboutMe;
+            },
+
+            about: () => { 
+                return aboutMe;
+            },
+            
+            date: () => new Date().toString(),
+            
+            clear: () => {
+                output.innerHTML = welcomeMessage;
+                return null;
+            },
+            
+            echo: (args) => args.join(' '),
+            
+            history: () => {
+                return commandHistory.map((cmd, i) => `${i + 1}  ${cmd}`).join('<br>');
+            },
+
+            experience: () => {
+                return experience;
+            },
+
+            projects: () => {
+                return projects;
+            },
+
+            links: () => {
+                return links;
+            },
+
+            technologies: () => {
+                return technologies;
+            },
+            
+        };
+        
+        function addLine(text, className = '') {
+            const line = document.createElement('div');
+            line.className = `line ${className}`;
+            line.innerHTML = text;
+            output.appendChild(line);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        function executeCommand(cmdLine) {
+            const parts = cmdLine.trim().split(' ');
+            const command = parts[0].toLowerCase();
+            const args = parts.slice(1);
+            
+            if (commandHistory[commandHistory.length - 1] !== cmdLine) {
+                commandHistory.push(cmdLine);
+            }
+            historyIndex = -1;
+            
+            addLine(`<span class="prompt">root@user:~$</span> ${cmdLine}`);
+            
+            if (commands[command]) {
+                const result = commands[command](args);
+                if (result !== null && result !== '') {
+                    addLine(result.replace(/\x1b\[[0-9;]*m/g, ''));
+                }
+            } else if (command === '') {
+                // do nothing
+            } else {
+                addLine(`${command}: command not found`, 'error');
+            }
+        }
+        
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = input.value;
+                input.value = '';
+                executeCommand(command);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    input.value = commandHistory[commandHistory.length - 1 - historyIndex];
+                }
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    input.value = commandHistory[commandHistory.length - 1 - historyIndex];
+                } else if (historyIndex === 0) {
+                    historyIndex = -1;
+                    input.value = '';
+                }
+            }
+        });
+        
+        document.addEventListener('click', () => {
+            input.focus();
+        });
+        
+        input.focus();
+        
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>
